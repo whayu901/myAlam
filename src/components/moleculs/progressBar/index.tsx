@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,9 +6,14 @@ import {
   Animated,
   TouchableWithoutFeedback,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 
-const ProgressBar = ({backgroundColor, completedColor}) => {
+interface Props {
+  backgroundColor: any;
+  completedColor: any;
+}
+
+const ProgressBar = ({ backgroundColor, completedColor }: Props) => {
   const [isInitialized, setIsInitialized] = useState(true);
   const [isFinished, setIsFinished] = useState(false);
   const [getPercentage, setPercentage] = useState(new Animated.Value(1));
@@ -22,12 +26,12 @@ const ProgressBar = ({backgroundColor, completedColor}) => {
 
   const checkoutHandle = () => {
     setIsInitialized(false);
-    progressAnimation.start(finished => {
+    progressAnimation.start((finished) => {
       resetAnimation(finished);
     });
   };
 
-  const resetAnimation = obj => {
+  const resetAnimation = (obj: any) => {
     if (obj.finished) {
       progressAnimation.reset();
     }
@@ -36,10 +40,10 @@ const ProgressBar = ({backgroundColor, completedColor}) => {
 
   const percentage = getPercentage.interpolate({
     inputRange: [1, 100],
-    outputRange: ['1%', '100%'],
+    outputRange: ["1%", "100%"],
   });
 
-  const renderElement = (isInitialized, isFinished) => {
+  const renderElement = (isInitialized: any, isFinished: any) => {
     if (isInitialized) {
       return (
         <View style={styles.checkoutContainer}>
@@ -65,7 +69,7 @@ const ProgressBar = ({backgroundColor, completedColor}) => {
                 progressAnimation.stop();
               }}
               onPressOut={() => {
-                progressAnimation.start(finished => {
+                progressAnimation.start((finished) => {
                   resetAnimation(finished);
                 });
               }}>
@@ -88,66 +92,66 @@ export default ProgressBar;
 
 const styles = StyleSheet.create({
   checkoutContainer: {
-    width: '100%',
+    width: "100%",
     height: 82,
     padding: 16,
-    backgroundColor: 'white',
-    borderTopColor: '#E0E0E0',
+    backgroundColor: "white",
+    borderTopColor: "#E0E0E0",
     borderTopWidth: 1,
   },
   checkoutButton: {
-    width: '100%',
+    width: "100%",
     height: 50,
-    backgroundColor: '#1987FF',
-    justifyContent: 'center',
+    backgroundColor: "#3ED598",
+    justifyContent: "center",
     borderRadius: 10,
   },
   checkoutText: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: 'white',
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "white",
   },
   successContainer: {
-    width: '100%',
+    width: "100%",
     height: 82,
     padding: 16,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderTopColor: '#E0E0E0',
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    borderTopColor: "#E0E0E0",
     borderTopWidth: 1,
   },
   successText: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: '#1987FF',
-    alignContent: 'center',
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "#3ED598",
+    alignContent: "center",
   },
   progressContainer: {
-    width: '100%',
+    width: "100%",
     height: 82,
     padding: 16,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    borderTopColor: '#E0E0E0',
+    backgroundColor: "white",
+    justifyContent: "center",
+    borderTopColor: "#E0E0E0",
     borderTopWidth: 1,
   },
-  progressBackground: backgroundColor => ({
-    width: '100%',
+  progressBackground: (backgroundColor: any) => ({
+    width: "100%",
     height: 25,
     marginVertical: 16,
     backgroundColor: backgroundColor,
     borderRadius: 5,
-    borderColor: '#E0E0E0',
+    borderColor: "#E0E0E0",
     borderWidth: 1,
-    position: 'relative',
+    position: "relative",
   }),
-  progressBar: (percentage, completedColor) => ({
+  progressBar: (percentage: any, completedColor: any) => ({
     width: percentage,
     height: 25,
     borderRadius: 5,
     backgroundColor: completedColor,
-    position: 'absolute',
+    position: "absolute",
     left: 16,
   }),
 });
