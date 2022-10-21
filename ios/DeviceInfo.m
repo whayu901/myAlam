@@ -8,8 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "React/RCTBridgeModule.h"
 
-@interface RCT_EXTERN_MODULE(DeviceInfo, NSObject)
+@interface RCT_EXTERN_MODULE(GetUniqueId, NSObject)
 
-RCT_EXTERN_METHOD(getDeviceID:(RCTResponseSenderBlock)callback)
+RCT_EXTERN_METHOD(getId:(RCTResponseSenderBlock)callback)
 
 @end

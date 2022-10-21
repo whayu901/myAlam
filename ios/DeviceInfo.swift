@@ -7,13 +7,13 @@
 
 import Foundation
 
-@objc(DeviceInfo)
-class DeviceInfo: NSObject {
+@objc(GetUniqueId)
+class GetUniqueId: NSObject {
   
   private var deviceID = "";
   
   @objc
-  func getDeviceID(_ callback: RCTResponseSenderBlock) {
+  func getId(_ callback: RCTResponseSenderBlock) {
     if let identifierForVendor = UIDevice.current.identifierForVendor {
       deviceID = identifierForVendor.uuidString
       callback([deviceID])
